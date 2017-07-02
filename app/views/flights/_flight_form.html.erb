@@ -1,0 +1,34 @@
+<% if @flights.any? %>
+  <div class="col-md-8 col-md-offset-2">
+    <h2 class="form-title"> Pick a flight </h2>
+    <%= form_tag(new_booking_path, method: :get) do %>
+      <%= hidden_field_tag(:seats, params[:seats]) %>
+      <table class="table">
+        <tr>
+          <th> 
+          <th> ID
+          <th> From:
+          <th> To:
+          <th> Date:
+          <th> Time:
+          <th> Flight duration:
+        </tr>
+        <% @flights.each do |flight| %>
+          <tr>
+            <td> <%= radio_button_tag(:flight_id, flight.id) %>
+            <td> <%=  flight.id %>
+            <td> <%=  flight.origin.airport_code %>
+            <td> <%=  flight.destination.airport_code %>
+            <td> <%=  flight.departure_date.to_date %>
+            <td> <%=  flight.departure_date.strftime("%H:%M") %>
+            <td> <%=  Time.at(flight.duration*60).utc.strftime("%H:%M:%S") %>
+          </tr>
+        <% end %>
+      </table>
+      <%= submit_tag 'Continue', class: 'btn btn-success', id: 'continue' %>
+    <% end %>
+<% else %>
+  <div class="col-md-8 col-md-offset-2">
+    <p> No flights available for this date. </p>
+  </div>
+<% end %>

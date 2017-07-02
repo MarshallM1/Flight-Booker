@@ -1,0 +1,46 @@
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+		<h1> Finalize your booking </h1>
+			<small> For the flight: </small>
+			<table class="table">
+        <tr> 
+          <th> ID
+          <th> From:
+          <th> To:
+          <th> Date:
+          <th> Time:
+          <th> Flight duration:
+        </tr>
+        <tr>
+          <td> <%=  @flight.id %>
+          <td> <%=  @flight.origin.airport_code %>
+          <td> <%=  @flight.destination.airport_code %>
+          <td> <%=  @flight.departure_date.to_date %>
+          <td> <%=  @flight.departure_date.strftime("%H:%M") %>
+          <td> <%=  Time.at(@flight.duration*60).utc.strftime("%H:%M:%S") %>
+        </tr>
+      </table>
+	</div>
+</div>
+
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+		<h1> Enter passenger info: </h1>
+			<%= form_for @booking, url: bookings_path, html: { class: 'form-horizontal' } do |f| %>
+				<% passenger_count = 1 %>
+				<%= f.fields_for :passengers do |p| %>
+					<div class="row">
+						<h3> Passenger <%=passenger_count%> </h3>
+						<%= p.label :name %>
+						<%= p.text_field :name, class: 'form-control' %>
+
+						<%= p.label :email %>
+						<%= p.email_field :email, class: 'form-control' %>
+					</div>
+					<% passenger_count += 1 %>
+				<% end %>
+				<%= f.hidden_field :flight_id  %>
+        <%= f.submit 'Create booking', class: 'btn btn-primary' %>
+			<% end %>
+	</div>
+</div>

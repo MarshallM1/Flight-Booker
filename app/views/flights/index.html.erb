@@ -1,0 +1,40 @@
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <h2 class="form-title"> Search for flights </h2>
+    <%= form_tag(flights_path, method: :get, remote: true) do %>
+      <div class="row">
+        <div class="col-md-6">
+          <%= label_tag :origin_id, 'From' %>
+          <%= collection_select(:flight, :origin_id, @airports, :id, :airport_code,
+                            {}, {class: 'form-control'}) %>
+        </div>
+        <div class="col-md-6">
+          <%= label_tag :origin_id, 'To' %>
+          <%= collection_select(:flight, :destination_id, @airports, :id, :airport_code,
+                            {}, {class: 'form-control'}) %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <%= label_tag :departure_date, 'Departure' %>
+          <%= select(:flight, :departure_date, 
+                       options_for_select(@flight_dates), {}, {class: 'form-control'}) %>
+        </div>
+        <div class="col-md-6">
+          <%= label_tag :seats, 'Passengers' %>
+          <%= select_tag :seats, options_for_select(1..4), class: 'form-control' %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2">
+          <%= submit_tag 'Search', class: 'btn btn-primary', id: 'search' %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="row">
+  <div id="flights">
+  </div>
+</div>
