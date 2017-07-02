@@ -2,7 +2,7 @@
 
 A small flight booking app, designed to showcase advanced forms.
 
-See the app live at https://flannel-toque-57026.herokuapp.com/
+See the app live at https://bloc-mountie-21671.herokuapp.com/
 
 See [The Odin Project](https://www.theodinproject.com/courses/ruby-on-rails/lessons/building-advanced-forms) for the project spec.
 
