@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Thanks for your booking, <%= @passenger.name %></h1>
+    <p>
+      To view your booking, just follow this link: <%= booking_url(@passenger.booking.id, host: 'https://bloc-mountie-21671.herokuapp.com') %>.
+    </p>
+    <p>Thanks for booking and have a great day!</p>
+    <p>Note: This is not a real flight, no money or tickets have been exchanged.</p>
+  </body>
+</html>

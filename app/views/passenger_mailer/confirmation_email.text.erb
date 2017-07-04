@@ -1,0 +1,8 @@
+
+Thanks for your booking, <%= @passenger.name %>
+===============================================
+ 
+ 
+To view your booking, just follow this link: <%= booking_url(@passenger.booking.id, host: 'https://bloc-mountie-21671.herokuapp.com') %>.
+ 
+Thanks for your booking and have a great day!

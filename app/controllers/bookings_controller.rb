@@ -10,7 +10,10 @@ class BookingsController < ApplicationController
     flight = Flight.find(params[:booking][:flight_id])
     @booking = flight.bookings.build(booking_params)
     if @booking.save
-      flash[:success] = 'Booking created.'
+    	@booking.passengers.each do |passenger|
+        PassengerMailer.confirmation_email(passenger).deliver!
+      end
+      flash[:success] = 'Booking created, check your email for confirmation.'
       redirect_to @booking
     else
       flash.now[:danger] = 'Booking failed.'
